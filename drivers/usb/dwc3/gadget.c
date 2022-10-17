@@ -3130,6 +3130,7 @@ static int dwc3_gadget_ep_cleanup_completed_request(struct dwc3_ep *dep,
 		struct dwc3_request *req, int status)
 {
 	struct dwc3 *dwc = dep->dwc;
+	int request_status;
 	int ret;
 
 	/*
@@ -3169,7 +3170,7 @@ static int dwc3_gadget_ep_cleanup_completed_request(struct dwc3_ep *dep,
 		req->needs_extra_trb = false;
 	}
 
-/*
+	/*
 	 * The event status only reflects the status of the TRB with IOC set.
 	 * For the requests that don't set interrupt on completion, the driver
 	 * needs to check and return the status of the completed TRBs associated
@@ -4299,7 +4300,6 @@ out:
  */
 int dwc3_gadget_init(struct dwc3 *dwc)
 {
-	int request_status;
 	int ret;
 	int irq;
 
